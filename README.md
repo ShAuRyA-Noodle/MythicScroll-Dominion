@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ MONSTER SCROLL DOMINATION
 
-## Getting Started
+> A cinematic, high-voltage scrollytelling product experience powered by Next.js 14, TypeScript, Framer Motion, and a custom Canvas image-sequence engine.
 
-First, run the development server:
+This is not a landing page.  
+This is a kinetic brand system.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🧠 Project Vision
+
+Modern product websites shouldn’t feel like static pages.
+
+They should feel engineered.
+
+This project recreates the kind of immersive digital experience seen in global campaign microsites — where scroll becomes a timeline, motion becomes narrative, and performance becomes a design constraint.
+
+### 🎯 Objective
+
+Build a production-grade, GPU-optimized scrollytelling experience that demonstrates advanced frontend architecture — not just UI assembly.
+
+---
+
+## 🚀 Core Features
+
+### 🎥 240-Frame Scroll-Driven Canvas Engine
+
+- Custom HTML5 Canvas rendering pipeline  
+- 240 PNG frames per product  
+- Scroll progress → frame index mapping  
+- `requestAnimationFrame` optimized  
+- Memory-safe preloading  
+- Responsive resizing ("contain" fit)  
+- Zero layout shift  
+- Smooth 60fps target  
+
+---
+
+### ⚡ Three Product Worlds
+
+Each flavor exists in its own engineered atmosphere:
+
+- **Ultra White** → Frozen Lightning Precision  
+- **Original Green** → Nuclear Reactor Chaos  
+- **Mango Loco** → Neon Festival Detonation  
+
+Each experience dynamically:
+
+- Changes gradient background  
+- Updates theme color  
+- Animates product sequence in/out  
+- Resets scroll cleanly between transitions  
+
+---
+
+### 🎬 Cinematic Motion System
+
+- Framer Motion scroll orchestration  
+- Sticky `500vh+` scroll container  
+- Text overlays mapped to scroll progress  
+- Controlled fade-in / fade-out sequences  
+- `AnimatePresence` flavor transitions  
+- Scroll reset logic on product change  
+
+This is motion-system thinking — not DOM-heavy animation.
+
+---
+
+## 🏗 Tech Stack
+
+| Layer | Technology |
+|--------|------------|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript (strict mode) |
+| Styling | Tailwind CSS |
+| Animation | Framer Motion |
+| Rendering | HTML5 Canvas |
+| Font | Outfit (Google Fonts) |
+| Deployment | Static Export |
+
+---
+
+## ⚡ Performance Philosophy
+
+This project is built as a system, not a demo.
+
+- No unnecessary re-renders  
+- Memoized components  
+- GPU-friendly transforms  
+- Canvas rendering isolated from React lifecycle  
+- Hydration mismatch prevention  
+- Static export compatible  
+- Minimal layout thrashing  
+
+**Target:**  
+Smooth, high-fidelity motion without sacrificing stability.
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+  app/
+    layout.tsx
+    page.tsx
+    globals.css
+
+  components/
+    ScrollEngine.tsx
+    TextOverlay.tsx
+    Navbar.tsx
+    Footer.tsx
+
+  data/
+    products.ts
+
+public/
+  Monster_01/
+  Monster_02/
+  Monster_03/
+
+next.config.ts
+tailwind.config.ts
+tsconfig.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🧩 Architecture Priorities
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Clear separation of concerns  
+- Isolated scroll engine  
+- Scalable data layer  
+- Deterministic animation logic  
+- Production-ready configuration  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠 Installation
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run build
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Static export ready.  
+Deploy anywhere.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🎯 What This Demonstrates
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project showcases:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Advanced scroll orchestration  
+- Canvas + React integration  
+- Performance-aware frontend engineering  
+- Brand-level interaction design  
+- Clean architectural thinking  
+
+It’s designed to communicate:
+
+> I don’t just build components.  
+> I engineer interactive systems.
+
+---
+
+## 🔥 Potential Extensions
+
+- WebGL particle systems  
+- Three.js lighting environments  
+- Adaptive quality for low-end devices  
+- Motion preference detection  
+- Full e-commerce integration  
+- Product analytics instrumentation  
+
+---
