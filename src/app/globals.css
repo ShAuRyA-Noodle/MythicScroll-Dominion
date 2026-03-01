@@ -18,6 +18,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   overscroll-behavior-y: none;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .no-scrollbar::-webkit-scrollbar {
