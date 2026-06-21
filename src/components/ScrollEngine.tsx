@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { products } from "@/data/products";
 
 interface ScrollEngineProps {
@@ -24,14 +24,14 @@ export default function ScrollEngine({ activeProductIndex, progress }: ScrollEng
 
     const activeProduct = products[activeProductIndex];
 
-    const getImagePath = (productIndex: number, frame: number) => {
+    const getImagePath = useCallback((productIndex: number, frame: number) => {
         const p = products[productIndex];
         const paddedFrame = frame.toString().padStart(3, "0");
         return `${p.sequencePath}/ezgif-frame-${paddedFrame}.png`;
-    };
+    }, []);
 
     // Refactored Preloader: Aggressive Memory Management
-    const preloadImages = (productIndex: number) => {
+    const preloadImages = useCallback((productIndex: number) => {
         if (loadedTracker[productIndex]) return;
 
         const p = products[productIndex];
@@ -55,7 +55,7 @@ export default function ScrollEngine({ activeProductIndex, progress }: ScrollEng
             }
         }
         loadedTracker[productIndex] = true;
-    };
+    }, [activeProductIndex, getImagePath]);
 
     // 1. Initial preload and resize listener (with dvh fix)
     useEffect(() => {
@@ -82,7 +82,7 @@ export default function ScrollEngine({ activeProductIndex, progress }: ScrollEng
         }
 
         return () => window.removeEventListener("resize", handleResize);
-    }, [activeProductIndex]);
+    }, [activeProductIndex, preloadImages]);
 
     // 2. Setup Canvas Context with devicePixelRatio for Retina/High-DPI Mobile Screens
     useEffect(() => {
@@ -108,6 +108,36 @@ export default function ScrollEngine({ activeProductIndex, progress }: ScrollEng
         // Force a redraw when resizing happens
         currentFrameRef.current = -1;
     }, [windowSize]);
+
+    // Centered "contain" fit draw helper. Declared before the render loop so the
+    // effect closure always captures a stable reference (useCallback, no deps).
+    const drawCenteredImage = useCallback((ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, img: HTMLImageElement) => {
+        // devicePixelRatio affects layout math
+        const dpr = window.devicePixelRatio || 1;
+        const cssWidth = canvas.width / dpr;
+        const cssHeight = canvas.height / dpr;
+
+        const canvasRatio = cssWidth / cssHeight;
+        const imgRatio = img.width / img.height;
+
+        let drawWidth, drawHeight, offsetX, offsetY;
+
+        if (canvasRatio > imgRatio) {
+            drawWidth = cssWidth;
+            drawHeight = cssWidth / imgRatio;
+            offsetX = 0;
+            offsetY = (cssHeight - drawHeight) / 2;
+        } else {
+            drawWidth = cssHeight * imgRatio;
+            drawHeight = cssHeight;
+            offsetX = (cssWidth - drawWidth) / 2;
+            offsetY = 0;
+        }
+
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, cssWidth, cssHeight);
+        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+    }, []);
 
     // 3. Render Loop utilizing requestAnimationFrame
     useEffect(() => {
@@ -147,35 +177,7 @@ export default function ScrollEngine({ activeProductIndex, progress }: ScrollEng
 
         requestRef.current = requestAnimationFrame(render);
         return () => cancelAnimationFrame(requestRef.current);
-    }, [progress, activeProductIndex, windowSize, activeProduct.frameCount]);
-
-    const drawCenteredImage = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, img: HTMLImageElement) => {
-        // devicePixelRatio affects layout math
-        const dpr = window.devicePixelRatio || 1;
-        const cssWidth = canvas.width / dpr;
-        const cssHeight = canvas.height / dpr;
-
-        const canvasRatio = cssWidth / cssHeight;
-        const imgRatio = img.width / img.height;
-
-        let drawWidth, drawHeight, offsetX, offsetY;
-
-        if (canvasRatio > imgRatio) {
-            drawWidth = cssWidth;
-            drawHeight = cssWidth / imgRatio;
-            offsetX = 0;
-            offsetY = (cssHeight - drawHeight) / 2;
-        } else {
-            drawWidth = cssHeight * imgRatio;
-            drawHeight = cssHeight;
-            offsetX = (cssWidth - drawWidth) / 2;
-            offsetY = 0;
-        }
-
-        ctx.fillStyle = "#000000";
-        ctx.fillRect(0, 0, cssWidth, cssHeight);
-        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-    };
+    }, [progress, activeProductIndex, windowSize, activeProduct.frameCount, drawCenteredImage, getImagePath]);
 
     return (
         // Replaced h-screen with h-[100dvh] for mobile safari bottom bar jumping

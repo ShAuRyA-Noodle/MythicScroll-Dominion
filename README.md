@@ -1,6 +1,6 @@
 # ⚡ MONSTER SCROLL DOMINATION
 
-> A cinematic, high-voltage scrollytelling product experience powered by Next.js 14, TypeScript, Framer Motion, and a custom Canvas image-sequence engine.
+> A cinematic, high-voltage scrollytelling product experience powered by Next.js 16, TypeScript, Framer Motion, and a custom Canvas image-sequence engine.
 
 This is not a landing page.  
 This is a kinetic brand system.
@@ -13,11 +13,11 @@ Modern product websites shouldn’t feel like static pages.
 
 They should feel engineered.
 
-This project recreates the kind of immersive digital experience seen in global campaign microsites — where scroll becomes a timeline, motion becomes narrative, and performance becomes a design constraint.
+This project recreates the kind of immersive digital experience seen in global campaign microsites, where scroll becomes a timeline, motion becomes narrative, and performance becomes a design constraint.
 
 ### 🎯 Objective
 
-Build a production-grade, GPU-optimized scrollytelling experience that demonstrates advanced frontend architecture — not just UI assembly.
+Build a production-grade, GPU-optimized scrollytelling experience that demonstrates advanced frontend architecture, not just UI assembly.
 
 ---
 
@@ -62,7 +62,7 @@ Each experience dynamically:
 - `AnimatePresence` flavor transitions  
 - Scroll reset logic on product change  
 
-This is motion-system thinking — not DOM-heavy animation.
+This is motion-system thinking, not DOM-heavy animation.
 
 ---
 
@@ -70,13 +70,13 @@ This is motion-system thinking — not DOM-heavy animation.
 
 | Layer | Technology |
 |--------|------------|
-| Framework | Next.js 14 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | Language | TypeScript (strict mode) |
 | Styling | Tailwind CSS |
 | Animation | Framer Motion |
 | Rendering | HTML5 Canvas |
 | Font | Outfit (Google Fonts) |
-| Deployment | Static Export |
+| Deployment | Static Export on Vercel |
 
 ---
 
@@ -121,7 +121,7 @@ public/
   Monster_03/
 
 next.config.ts
-tailwind.config.ts
+postcss.config.mjs
 tsconfig.json
 ```
 

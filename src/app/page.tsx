@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import ScrollEngine from "@/components/ScrollEngine";
 import TextOverlay from "@/components/TextOverlay";
